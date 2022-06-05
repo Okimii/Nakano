@@ -6,12 +6,12 @@ from typing import Any, Awaitable, Callable
 import asyncio
 
 from aiohttp import ClientSession
-from errors import OutdatedGatewayVersion
+from .. import OutdatedGatewayVersion
 from gateway.eventcreator import EventManager
-from httpclient import HTTPClient, Route
+from ..import HTTPClient, Route
 import random
 
-
+__all__ = ["GatewayClient"]
 Coro = Callable[..., Awaitable[Any]]
 
 

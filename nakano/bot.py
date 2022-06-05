@@ -1,7 +1,9 @@
 import asyncio
 
 from aiohttp import ClientSession
-from gateway.gatewayclient import GatewayClient
+from . import GatewayClient
+
+__all__ = ["BotBase"]
 
 
 class BotBase(GatewayClient):
