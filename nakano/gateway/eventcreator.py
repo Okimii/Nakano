@@ -7,7 +7,7 @@ class EventManager:
     def __init__(self, gatewayclient: "GatewayClient") -> None:
         self.gatewayclient = gatewayclient
 
-    async def checker(self, eventpayload: dict[Any, Any]) -> None:
+    async def checker(self, eventpayload: dict[str, Any]) -> None:
         eventop = eventpayload["op"]
         if eventop == 11:
             pass

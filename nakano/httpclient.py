@@ -18,7 +18,7 @@ class HTTPClient:
     def __init__(self, session: aiohttp.ClientSession) -> None:
         self.session = session
 
-    async def request_(self, route: Route) -> dict[Any, Any]:
+    async def request_(self, route: Route) -> dict[str, Any]:
         async with self.session.request(
             route.method, f"{route.BASEURL}{route.endpoint}", headers=route.headers
         ) as payload:
