@@ -1,7 +1,7 @@
 import asyncio
 
 from aiohttp import ClientSession
-from . import GatewayClient
+from .gateway import GatewayClient
 
 __all__ = ["BotBase"]
 

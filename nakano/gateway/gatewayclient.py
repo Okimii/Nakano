@@ -1,15 +1,16 @@
 from __future__ import annotations
-import json
 
+import asyncio
+import json
+import random
 import sys
 from typing import Any, Awaitable, Callable
-import asyncio
 
 from aiohttp import ClientSession
-from .. import OutdatedGatewayVersion
-from gateway.eventcreator import EventManager
-from ..import HTTPClient, Route
-import random
+
+from nakano.httpclient import HTTPClient, Route
+from nakano.errors import OutdatedGatewayVersion
+from .eventcreator import EventManager
 
 __all__ = ["GatewayClient"]
 Coro = Callable[..., Awaitable[Any]]
