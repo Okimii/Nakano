@@ -1,3 +1,5 @@
+__all__ = ["BaseObject"]
+
 class BaseObject:
 
     def __repr__(self) -> str:

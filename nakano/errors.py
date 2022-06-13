@@ -1,4 +1,4 @@
-__all__ = ["BaseNakanoException", "OutdatedGatewayVersion"]
+__all__ = ["BaseNakanoException", "OutdatedGatewayVersion", "InvalidGatewayEventName"]
 
 
 class BaseNakanoException(Exception):
@@ -7,5 +7,9 @@ class BaseNakanoException(Exception):
 
 
 class OutdatedGatewayVersion(BaseNakanoException):
+    def __init__(self, message: str = "") -> None:
+        super().__init__(message)
+
+class InvalidGatewayEventName(BaseNakanoException):
     def __init__(self, message: str = "") -> None:
         super().__init__(message)

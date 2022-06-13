@@ -9,9 +9,9 @@ from typing import Any, Awaitable, Callable
 from aiohttp import ClientSession
 
 from nakano.httpclient import HTTPClient, Route
-from nakano.errors import OutdatedGatewayVersion
-from .eventcreator import EventManager
-
+from nakano.errors import OutdatedGatewayVersion, InvalidGatewayEventName
+from .eventmanagement import EventManager
+from .gatewayenum import GatewayEvents
 __all__ = ["GatewayClient"]
 Coro = Callable[..., Awaitable[Any]]
 
@@ -32,13 +32,15 @@ class GatewayClient:
         self.listeners: list[Coro] = []
         if gatewayver not in {9, 10}:
             raise OutdatedGatewayVersion(
-                f"Gateway version must be between 9 or 10, not {gatewayver}"
+                f"Gateway version must be between 9 or 10, not {gatewayver}."
             )
 
     def on(self, eventname: str) -> Coro:
         def register(coro: Coro) -> Coro:
             if not asyncio.iscoroutinefunction(coro):
                 raise TypeError("event registered must be a coroutine function")
+            if eventname not in GatewayEvents.all_events():
+                raise InvalidGatewayEventName(f"Incorrect gateway event name, please check spelling and remember gateway event names are formatted in UPPERCASE and snake_casing.")
             self.listeners.append({eventname: coro})
             return coro
 

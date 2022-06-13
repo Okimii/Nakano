@@ -1,7 +1,9 @@
 from .gateway import *
+from .objects import *
 from .bot import *
 from .errors import *
 from .httpclient import *
+
 
 __title__ = "Nakano"
 __author__ = "Okimii"
