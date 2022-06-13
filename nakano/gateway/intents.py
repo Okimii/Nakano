@@ -48,3 +48,5 @@ class Intents:
     @property
     def is_privileged(self) -> bool:
         return bool(self & self.ALL_PRIVILEGED)
+
+#  credits to the lovely people from hikari, source from https://github.com/hikari-py/hikari/blob/6dbab9a6f401bcf597997b46820717e4dd956c13/hikari/intents.py
