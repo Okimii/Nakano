@@ -1,10 +1,13 @@
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 __all__ = ["EventManager"]
 
+if TYPE_CHECKING:
+    from .gatewayclient import GatewayClient
+
 
 class EventManager:
-    def __init__(self, gatewayclient: "GatewayClient") -> None:
+    def __init__(self, gatewayclient: GatewayClient) -> None:
         self.gatewayclient = gatewayclient
 
     async def checker(self, eventpayload: dict[str, Any]) -> None:
