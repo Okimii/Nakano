@@ -8,7 +8,7 @@ __all__ = ["Route", "HTTPClient"]
 
 @dataclass
 class Route:
-    BASEURL: ClassVar = "https://discord.com/api/v10"
+    BASEURL: ClassVar = "https://discord.com/api/v10/"
     method: str
     endpoint: str
     headers: dict[Any, Any]
@@ -19,12 +19,7 @@ class HTTPClient:
         self.session = session
 
     async def request_(self, route: Route, to_discord: bool = True) -> dict[str, Any]:
-        if to_discord:
-            async with self.session.request(
-                route.method, f"{route.BASEURL}/{route.endpoint}", headers=route.headers
-            ) as payload:
-                return await payload.json()
         async with self.session.request(
-            route.method, route.endpoint, headers=route.headers
+            route.method, f"{'' if to_discord else route.BASEURL}{route.endpoint}", headers=route.headers
         ) as payload:
-            return await payload.json()
+                return await payload.json()
